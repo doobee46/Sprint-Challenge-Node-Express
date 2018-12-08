@@ -1,5 +1,6 @@
 const express = require('express');
 const actionDb = require('../data/helpers/actionModel');
+const projectDb = require('../data/helpers/projectModel');
 
 const parser = express.json();
 const router = express.Router();
@@ -61,6 +62,25 @@ router.post('/',(req, res) =>{
   .status(400)
   .json({message:" The action text or description is missing  "})
   } 
+})
+
+router.get('/project/:id',(req, res)=>{
+  const { id } = req.params
+  projectDb.getProjectActions(id)
+  .then(actions =>{
+    if(actions){
+      res.json(actions);
+    }else{
+      res
+      .status(404)
+      .json({errorMessage:"unable to retrieve actions for specified project id"})
+    }
+  })
+  .catch(err =>{
+    res
+    .status(500)
+    .json({errorMessage:"unable to retrieve actions informations"})
+  })
 })
 
 router.delete('/:id',(req, res) =>{

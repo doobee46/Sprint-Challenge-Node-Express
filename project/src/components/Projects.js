@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Project from '../components/Project';
 import axios from 'axios';
 
 class Projects extends Component {
@@ -7,18 +8,28 @@ class Projects extends Component {
     this.state = { 
       projects:[]
     }
-    this.url ='http:localhost:4000/api';
   }
 
   componentDidMount(){
-    axios.get(`${this.url}/`)
-    .then()
-    .catch()
+    axios
+    .get('http://localhost:5050/api/projects')
+    .then(res =>{
+      this.setState({
+        projects: res.data
+      })
+    })
+    .catch(err =>{
+      console.log(err)
+    })
   }
 
   render() { 
+    console.log(this.state.projects)
     return ( 
       <>
+      {this.state.projects.map(project =>{
+        return <Project key={project.id} project={project}/>
+      })}
       </>
     );
   }

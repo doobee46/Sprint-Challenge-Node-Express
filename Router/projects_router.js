@@ -1,5 +1,6 @@
 const express = require('express');
 const projectDb = require('../data/helpers/projectModel');
+const actionDb = require('../data/helpers/actionModel');
 
 const parser = express.json();
 const router = express.Router();
@@ -81,25 +82,6 @@ router.delete('/:id',(req, res) =>{
     .status(500)
     .json({errorMessage:" Unable to delete record"})
   })
-})
-
-router.get('/:id/actions',(req, res)=>{
-  const { id } = req.params
-  projectDb.getProjectActions(id)
-  .then(actions =>{
-    if(actions){
-    res.json(actions)
-    }
-    else{
-      res.status(404)
-      .json({message:"unable to retrieve action for the specified Id"})
-    }
-  })
-  .catch(
-    res
-    .status(500)
-    .json({errorMessage:"The actions cannot be retrieved for project with specified id"})
-  )
 })
 
 router.put('/:id',(req,res) =>{
