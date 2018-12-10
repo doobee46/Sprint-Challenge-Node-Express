@@ -24,6 +24,20 @@ export const Logo =styled.h3`
 text-transform:uppercase;
 font-sizer:2rem;
 `
+
+export const ProjectContainer = styled.div`
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+margin:10px auto;
+width:100%;
+max-width:380px;
+border:1px dotted darkgrey;
+padding:20px;
+border-bottom:1px dotted darkgrey;
+`
+
 // export const HeaderNav = styled.div`
 // display:flex;
 // flex-direction:row;

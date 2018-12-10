@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Project from '../components/Project';
+import { Button } from 'reactstrap';
 import axios from 'axios';
 
 class Projects extends Component {
@@ -25,8 +26,9 @@ class Projects extends Component {
 
   render() { 
     console.log(this.state.projects)
-    return ( 
+    return (
       <>
+      <Button color="success"> + Add Project</Button>
       {this.state.projects.map(project =>{
         return <Project key={project.id} project={project}/>
       })}
